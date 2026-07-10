@@ -22,4 +22,12 @@ public class CareTask {
     public TaskStatus getStatus() {
         return status;
     }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    public String toString() {
+        return description + " (" + priority + ", " + status + ")";
+    }
 }

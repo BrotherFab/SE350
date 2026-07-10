@@ -16,4 +16,8 @@ public class VitalSigns {
     public int getHeartRate() {
         return heartRate;
     }
+
+    public String toString() {
+        return "Temp: " + temperature + ", Heart Rate: " + heartRate;
+    }
 }
