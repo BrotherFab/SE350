@@ -96,9 +96,17 @@ public class Main {
         if (task == null) {
             return;
         }
-        TaskStatus status = readStatus();
-        task.setStatus(status);
-        System.out.println("Updated: " + task);
+        System.out.print("Start or complete this task? (s/c): ");
+        String action = scanner.nextLine().trim().toLowerCase();
+        if (action.equals("s")) {
+            task.start();
+        } else if (action.equals("c")) {
+            task.complete();
+        } else {
+            System.out.println("Invalid choice.");
+            return;
+        }
+        System.out.println("Now: " + task);
     }
 
     private static void printSummary() {
@@ -158,18 +166,6 @@ public class Main {
                 return TaskPriority.valueOf(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid priority.");
-            }
-        }
-    }
-
-    private static TaskStatus readStatus() {
-        while (true) {
-            System.out.print("Status (PENDING, IN_PROGRESS, COMPLETED): ");
-            String input = scanner.nextLine().trim().toUpperCase();
-            try {
-                return TaskStatus.valueOf(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid status.");
             }
         }
     }

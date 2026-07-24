@@ -3,12 +3,12 @@ package src;
 public class CareTask {
     private String description;
     private TaskPriority priority;
-    private TaskStatus status;
+    private TaskState state;
 
     public CareTask(String description, TaskPriority priority) {
         this.description = description;
         this.priority = priority;
-        this.status = TaskStatus.PENDING;
+        this.state = new PendingState();
     }
 
     public String getDescription() {
@@ -20,14 +20,22 @@ public class CareTask {
     }
 
     public TaskStatus getStatus() {
-        return status;
+        return state.getStatus();
     }
 
-    public void setStatus(TaskStatus status) {
-        this.status = status;
+    public void start() {
+        state.start(this);
+    }
+
+    public void complete() {
+        state.complete(this);
+    }
+
+    void setState(TaskState state) {
+        this.state = state;
     }
 
     public String toString() {
-        return description + " (" + priority + ", " + status + ")";
+        return description + " (" + priority + ", " + getStatus() + ")";
     }
 }
